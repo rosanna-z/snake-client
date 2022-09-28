@@ -13,14 +13,27 @@ const connect = function () {
 
   conn.on("connect", () => {
     console.log("Successfully connected to game server!")
-    conn.write("Name: RZ");
-  });
+    conn.write("Name: RZ")
+    conn.write("Move: down")
 
-  conn.on("data", (data) => {
+      setInterval(() => {
+      conn.write("Move: left");
+      }, 1000) 
+
+      setTimeout(() => {
+      conn.write("Move: up");
+      }, 1000);
+
+      setInterval(() => {
+        conn.write("Move: down");
+        }, 1000) 
+  
+
+    conn.on("data", (data) => {
     console.log(data)
-  });
+    });
 
   return conn;
-};
+})};
 
 module.exports = { connect };
